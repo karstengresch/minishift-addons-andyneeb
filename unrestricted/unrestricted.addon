@@ -1,0 +1,6 @@
+# Name: unrestricted
+# Description: Allows authenticated users to run images unrestricted
+# Be carefull and do not use outside a sandboxed environment
+# Url: https://access.redhat.com/documentation/en-us/openshift_enterprise/3.2/html/cluster_administration/admin-guide-manage-scc
+
+oc adm policy add-scc-to-group privileged system:authenticated
