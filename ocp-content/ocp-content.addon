@@ -1,0 +1,37 @@
+# Name: ocp-content
+# Description: Imports OCP content (ImageStreams & Templates)
+
+# CloudForms
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/cfme-templates/cfme-template.yaml
+
+# XPaaS ImageStreams
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/xpaas-streams/jboss-image-streams.json
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/xpaas-streams/fis-image-streams.json
+
+# RHEL7 ImageStreams
+oc update -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/image-streams/image-streams-rhel7.json
+
+# DotNet ImageStreams
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/image-streams/dotnet_imagestreams.json
+
+# DB Templates
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/db-templates/mariadb-ephemeral-template.json 
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/db-templates/mongodb-ephemeral-template.json
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/db-templates/mysql-ephemeral-template.json
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/db-templates/postgresql-ephemeral-template.json
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/db-templates/redis-ephemeral-template.json
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/db-templates/redis-persistent-template.json
+
+# XPaaS Templates
+oc create -n openshift -f v1.6/xpaas-templates
+
+# QuickStart Templates
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/quickstart-templates/apicast-gateway-template.yml 
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/quickstart-templates/cakephp-mysql.json
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/quickstart-templates/dancer-mysql.json
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/quickstart-templates/django-postgresql.json
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/quickstart-templates/dotnet-example.json
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/quickstart-templates/dotnet-pgsql-persistent.json
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/quickstart-templates/nodejs-mongodb.json
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/openshift-ansible/master/roles/openshift_examples/files/examples/v1.6/quickstart-templates/rails-postgresql.json
+ 
