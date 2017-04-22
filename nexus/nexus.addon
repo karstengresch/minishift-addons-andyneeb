@@ -1,0 +1,6 @@
+# Name: nexus
+# Description: Create Nexus project.
+
+oc new-project nexus
+oc new-app -f nexus2-persistent-template.yaml --param=HOSTNAME=nexus.#{ip}.nip.io
+

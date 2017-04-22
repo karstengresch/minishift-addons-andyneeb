@@ -1,0 +1,4 @@
+# Name: openjdk
+# Description: Imports OpenJDK templates
+
+oc create -f openjdk-s2i-imagestream.json -n openshift
