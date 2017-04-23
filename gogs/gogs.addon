@@ -2,5 +2,5 @@
 # Description: Create gogs project.
 
 oc new-project gogs
-oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-persistent-template.yaml --param=HOSTNAME=gogs.#{ip}.nip.io
+oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-persistent-template.yaml --param=HOSTNAME=gogs.#{ip}.nip.io --param=SKIP_TLS_VERIFY=true --param=GOGS_VERSION=latest
 oc policy add-role-to-group view system:authenticated -n gogs
