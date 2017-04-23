@@ -3,4 +3,4 @@
 
 oc new-project nexus
 oc new-app -f nexus2-persistent-template.yaml --param=HOSTNAME=nexus.#{ip}.nip.io
-
+oc policy add-role-to-group view system:authenticated -n nexus

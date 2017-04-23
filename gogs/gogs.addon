@@ -3,4 +3,4 @@
 
 oc new-project gogs
 oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-persistent-template.yaml --param=HOSTNAME=gogs.#{ip}.nip.io
-
+oc policy add-role-to-group view system:authenticated -n gogs

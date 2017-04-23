@@ -6,3 +6,6 @@ oc new-project workshop
 oc new-app --name=labs https://github.com/openshift-evangelists/openshift-workshops.git
 oc expose service labs
 
+# Giving all users view access
+oc policy add-role-to-group view system:authenticated -n workshop
+#
