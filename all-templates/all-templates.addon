@@ -1,0 +1,16 @@
+# Name: all-templates
+# Description: Drops and recreates all ImageStreams & Templates
+# Requires content locally
+# https://github.com/openshift/openshift-ansible/tree/master/roles/openshift_examples/files/examples
+
+oc delete is --all -n openshift
+oc delete templates --all -n openshift
+
+oc create -n openshift -f v1.6/cfme-templates/cfme-template.yaml 
+oc create -n openshift -f v1.6/db-templates
+oc create -n openshift -f v1.6/image-streams/image-streams-rhel7.json
+oc create -n openshift -f v1.6/image-streams/dotnet_imagestreams.json
+oc create -n openshift -f v1.6/quickstart-templates
+oc create -n openshift -f v1.6/xpaas-streams/fis-image-streams.json
+oc create -n openshift -f v1.6/xpaas-streams/jboss-image-streams.json
+oc create -n openshift -f v1.6/xpaas-templates
