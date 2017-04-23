@@ -1,5 +1,9 @@
 Couple of addons to enhance my minishift demo kit
 
+# Increase MiniShift Resources
+minishift config set memory 6144
+minishift config set disk-size 40g
+
 # Clone this repo
 git clone https://github.com/andyneeb/minishift-addons.git
 
