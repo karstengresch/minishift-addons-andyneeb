@@ -2,5 +2,6 @@
 # Description: Create Nexus project.
 
 oc new-project nexus
-oc new-app -f nexus2-persistent-template.yaml --param=HOSTNAME=nexus.#{ip}.nip.io
+oc new-app -f nexus2-persistent.yaml --param=HOSTNAME=nexus.#{ip}.nip.io
+oc import-image nexus
 oc policy add-role-to-group view system:authenticated -n nexus
