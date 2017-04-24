@@ -1,0 +1,28 @@
+# This is a list of the stuff that needs to be setup for the full hello demo to work
+# Not everything is automated yet
+
+
+# Create projects (dev/test/prod) and set access
+oc adm new-project dev --admin=dev
+oc adm new-project test --admin=test
+oc adm new-project prod --admin=prod
+
+oc adm policy add-role-to-user view test -n dev
+oc adm policy add-role-to-user view prod -n test
+
+
+# Import https://github.com/andyneeb/hello to Gogs
+register user dev
+migrate repo
+
+
+# Setup Nexus as NPM mirror
+login as admin/admin123
+add proxy repo
+	id/name: npm_proxy
+	url: https://registry.npmjs.org/
+
+
+# Add gogs repo as example to node.js template
+edit openshift/nodejs template
+
