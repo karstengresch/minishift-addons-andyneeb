@@ -5,3 +5,6 @@ oc new-project gogs
 oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-persistent-template.yaml --param=HOSTNAME=gogs.#{ip}.nip.io --param=SKIP_TLS_VERIFY=true --param=GOGS_VERSION=0.10.18
 oc import-image gogs:0.10.18
 oc policy add-role-to-group view system:authenticated -n gogs
+
+# Need to patch the DCs pull policy to 'IfNotPresent' for offline usage
+#

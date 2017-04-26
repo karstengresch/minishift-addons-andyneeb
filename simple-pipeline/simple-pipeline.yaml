@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: simple-pipeline
+  namespace: openshift
+  annotations:
+    description: Pipeline enable an existing DeploymentConfig
+    iconClass: icon-jenkins
+    tags: 'instant-app,jenkins'
+objects:
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      annotations:
+        pipeline.alpha.openshift.io/uses: >-
+          [{"name": "${DEPLOYMENT_CONFIG_NAME}", "namespace": "", "kind":
+          "DeploymentConfig"}]
+      labels:
+        name: pipeline
+      name: pipeline
+    spec:
+      strategy:
+        jenkinsPipelineStrategy:
+          jenkinsfile: >-
+            node('${JENKINS_SLAVE}') {
+
+
+            stage 'Build'
+
+            openshiftBuild(buildConfig: 'hello', showBuildLogs: 'true') 
+
+
+            stage 'Deploy to Development'
+
+            openshiftDeploy(deploymentConfig: 'hello') 
+
+
+            stage 'Deploy to Test'
+
+            openshiftTag(namespace: 'dev', sourceStream: 'hello',  sourceTag:
+            'latest', destinationStream: 'hello', destinationTag:
+            'promoteToTest')
+
+            openshiftScale(namespace: 'test', deploymentConfig:
+            'hello',replicaCount: '1')
+
+
+            stage 'Deploy to Production'
+
+            input 'Deploy to Production?'
+
+            openshiftTag(namespace: 'dev', sourceStream: 'hello',  sourceTag:
+            'latest', destinationStream: 'hello', destinationTag:
+            'promoteToProd')
+
+            openshiftScale(namespace: 'prod', deploymentConfig:
+            'hello',replicaCount: '2')
+
+
+            }
+        type: JenkinsPipeline
+      triggers:
+        - github:
+            secret: secret101
+          type: GitHub
+        - generic:
+            secret: secret101
+          type: Generic
+parameters:
+  - name: BUILD_CONFIG_NAME
+    displayName: Application Build Config Name
+    description: The name of the OpenShift BuildConfig you want the pipeline to build.
+    required: true
+  - name: DEPLOYMENT_CONFIG_NAME
+    displayName: Application Deployment Config Name
+    description: >-
+      The name of the OpenShift DeploymentConfig you want to associate the
+      pipeline with.
+    required: true
+  - name: JENKINS_SLAVE
+    displayName: Jenkins target slave node
+    description: >-
+      Jenkins slaves can be targeted to certain slave node types, such as
+      'maven'.
+labels:
+  template: application-pipeline-template
+

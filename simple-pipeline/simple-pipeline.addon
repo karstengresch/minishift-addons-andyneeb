@@ -1,0 +1,4 @@
+# Name: simple-pipeline
+# Description: Allows authenticated users to run images unrestricted
+
+oc create -n openshift -f simple-pipeline.yaml

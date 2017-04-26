@@ -7,9 +7,11 @@ oc adm new-project dev --admin=dev
 oc adm new-project test --admin=test
 oc adm new-project prod --admin=prod
 
-oc adm policy add-role-to-user view test -n dev
-oc adm policy add-role-to-user view prod -n test
-
+oc policy add-role-to-group system:image-puller system:serviceaccounts:test -n dev
+oc policy add-role-to-group system:image-puller system:serviceaccounts:prod -n dev
+oc policy add-role-to-user edit system:serviceaccount:dev:jenkins -n dev
+oc policy add-role-to-user edit system:serviceaccount:dev:jenkins -n test
+oc policy add-role-to-user edit system:serviceaccount:dev:jenkins -n prod
 
 # Import https://github.com/andyneeb/hello to Gogs
 register user dev
