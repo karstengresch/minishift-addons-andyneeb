@@ -29,12 +29,6 @@ objects:
 
             openshiftBuild(buildConfig: 'hello', showBuildLogs: 'true') 
 
-
-            stage 'Deploy to Development'
-
-            openshiftDeploy(deploymentConfig: 'hello') 
-
-
             stage 'Deploy to Test'
 
             openshiftTag(namespace: 'dev', sourceStream: 'hello',  sourceTag:
@@ -43,7 +37,6 @@ objects:
 
             openshiftScale(namespace: 'test', deploymentConfig:
             'hello',replicaCount: '1')
-
 
             stage 'Deploy to Production'
 
